@@ -35,6 +35,12 @@ Overview of SimMMDG. We split the features of each modality into modality-specif
 
 ## Code
 The code was tested using `torch 1.11.0+cu113` and `NVIDIA GeForce RTX 3090`.
+
+Environments:
+```
+mmcv-full 1.2.7
+mmaction2 0.13.0
+```
 ### EPIC-Kitchens Dataset
 ### Prepare
 
