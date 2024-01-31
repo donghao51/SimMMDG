@@ -21,7 +21,6 @@
 </div>
 
 
-<strong>In real-world scenarios, achieving domain generalization (DG) presents significant challenges as models are required to generalize to unknown target distributions. Generalizing to unseen multi-modal distributions poses even greater difficulties due to the distinct properties exhibited by different modalities. To overcome the challenges of achieving domain generalization in multi-modal scenarios, we propose SimMMDG, a simple yet effective multi-modal DG framework. We argue that mapping features from different modalities into the same embedding space impedes model generalization. To address this, we propose splitting the features within each modality into modality-specific and modality-shared components. We employ supervised contrastive learning on the modality-shared features to ensure they possess joint properties and impose distance constraints on modality-specific features to promote diversity. In addition, we introduce a cross-modal translation module to regularize the learned features, which can also be used for missing-modality generalization. We demonstrate that our framework is theoretically well-supported and achieves strong performance in multi-modal DG on the EPIC-Kitchens dataset and the novel Human-Animal-Cartoon (HAC) dataset introduced in this paper. </strong>
 
 <div style="text-align:center">
 <img src="imgs/SimMMDG.jpg"  width="95%" height="100%">
@@ -32,9 +31,85 @@
 </div>
 
 
-## Code
-The code and dataset will be available soon.
+Overview of SimMMDG. We split the features of each modality into modality-specific and modality-shared parts. For the modality-shared part, we use supervised contrastive learning to map the features with the same label to be as close as possible. For modality-specific features, we use a distance loss to encourage them to be far from modality-shared features, promoting diversity within each modality. Additionally, we introduce a cross-modal translation module that regularizes features and enhances generalization across missing modalities.
 
+## Code
+The code was tested using `torch 1.11.0+cu113` and `NVIDIA GeForce RTX 3090`.
+### EPIC-Kitchens Dataset
+### Prepare
+
+#### Download Pretrained Weights
+1. Download Audio model [link](http://www.robots.ox.ac.uk/~vgg/data/vggsound/models/H.pth.tar), rename it as `vggsound_avgpool.pth.tar` and place under the `EPIC-rgb-audio/pretrained_models` directory
+   
+2. Download SlowFast model for RGB modality [link](https://download.openmmlab.com/mmaction/recognition/slowfast/slowfast_r101_8x8x1_256e_kinetics400_rgb/slowfast_r101_8x8x1_256e_kinetics400_rgb_20210218-0dd54025.pth) and place under the `EPIC-rgb-audio/pretrained_models` directory
+
+#### Download EPIC-Kitchens Dataset
+```
+bash download_script.sh 
+```
+Download Audio files [EPIC-KITCHENS-audio.zip](https://polybox.ethz.ch/index.php/s/PE2zIL99OWXQfMu).
+
+Unzip all files and the directory structure should be modified to match:
+
+```
+├── MM-SADA_Domain_Adaptation_Splits
+├── rgb
+|   ├── train
+|   |   ├── D1
+|   |   |   ├── P08_01.wav
+|   |   |   ├── P08_01
+|   |   |   |     ├── frame_0000000000.jpg
+|   |   |   |     ├── ...
+|   |   |   ├── P08_02.wav
+|   |   |   ├── P08_02
+|   |   |   ├── ...
+|   |   ├── D2
+|   |   ├── D3
+|   ├── test
+|   |   ├── D1
+|   |   ├── D2
+|   |   ├── D3
+
+
+├── flow
+|   ├── train
+|   |   ├── D1
+|   |   |   ├── P08_01 
+|   |   |   |   ├── u
+|   |   |   |   |   ├── frame_0000000000.jpg
+|   |   |   |   |   ├── ...
+|   |   |   |   ├── v
+|   |   |   ├── P08_02
+|   |   |   ├── ...
+|   |   ├── D2
+|   |   ├── D3
+|   ├── test
+|   |   ├── D1
+|   |   ├── D2
+|   |   ├── D3
+```
+
+### RGB and audio
+```
+cd EPIC-rgb-audio
+```
+```
+python train_video_audio_SimMMDG.py -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_audio_SimMMDG.py -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_audio_SimMMDG.py -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
+```
+
+### HAC Dataset
+This dataset can be downloaded at [link](https://polybox.ethz.ch/index.php/s/3F8ZWanMMVjKwJK).
+
+The training code for HAC Dataset will come soon.
+
+## Contact
+If you have any questions, please send an email to donghaospurs@gmail.com
 
 ## Citation
 
@@ -48,4 +123,6 @@ If you find our work useful in your research please consider citing our paper:
     year={2023}
 }
 ```
+## Acknowledgement
 
+Many thanks to the excellent open-source projects [DomainAdaptation](https://github.com/xiaobai1217/DomainAdaptation).
