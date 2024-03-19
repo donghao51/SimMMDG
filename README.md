@@ -34,7 +34,7 @@
 Overview of SimMMDG. We split the features of each modality into modality-specific and modality-shared parts. For the modality-shared part, we use supervised contrastive learning to map the features with the same label to be as close as possible. For modality-specific features, we use a distance loss to encourage them to be far from modality-shared features, promoting diversity within each modality. Additionally, we introduce a cross-modal translation module that regularizes features and enhances generalization across missing modalities.
 
 ## Code
-The code was tested using `torch 1.11.0+cu113` and `NVIDIA GeForce RTX 3090`.
+The code was tested using `Python 3.10.4`, `torch 1.11.0+cu113` and `NVIDIA GeForce RTX 3090`.
 
 Environments:
 ```
@@ -45,9 +45,11 @@ mmaction2 0.13.0
 ### Prepare
 
 #### Download Pretrained Weights
-1. Download Audio model [link](http://www.robots.ox.ac.uk/~vgg/data/vggsound/models/H.pth.tar), rename it as `vggsound_avgpool.pth.tar` and place under the `EPIC-rgb-audio/pretrained_models` directory
+1. Download Audio model [link](http://www.robots.ox.ac.uk/~vgg/data/vggsound/models/H.pth.tar), rename it as `vggsound_avgpool.pth.tar` and place under the `EPIC-rgb-flow-audio/pretrained_models` directory
    
-2. Download SlowFast model for RGB modality [link](https://download.openmmlab.com/mmaction/recognition/slowfast/slowfast_r101_8x8x1_256e_kinetics400_rgb/slowfast_r101_8x8x1_256e_kinetics400_rgb_20210218-0dd54025.pth) and place under the `EPIC-rgb-audio/pretrained_models` directory
+2. Download SlowFast model for RGB modality [link](https://download.openmmlab.com/mmaction/recognition/slowfast/slowfast_r101_8x8x1_256e_kinetics400_rgb/slowfast_r101_8x8x1_256e_kinetics400_rgb_20210218-0dd54025.pth) and place under the `EPIC-rgb-flow-audio/pretrained_models` directory
+   
+3. Download SlowOnly model for Flow modality [link](https://download.openmmlab.com/mmaction/recognition/slowonly/slowonly_r50_8x8x1_256e_kinetics400_flow/slowonly_r50_8x8x1_256e_kinetics400_flow_20200704-6b384243.pth) and place under the `EPIC-rgb-flow-audio/pretrained_models` directory
 
 #### Download EPIC-Kitchens Dataset
 ```
@@ -95,24 +97,125 @@ Unzip all files and the directory structure should be modified to match:
 |   |   ├── D3
 ```
 
-### RGB and audio
+### Video and Audio
 ```
-cd EPIC-rgb-audio
-```
-```
-python train_video_audio_SimMMDG.py -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
+cd EPIC-rgb-flow-audio
 ```
 ```
-python train_video_audio_SimMMDG.py -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
 ```
 ```
-python train_video_audio_SimMMDG.py -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
 ```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
+```
+
+### Video and Flow
+```
+cd EPIC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
+```
+
+### Flow and Audio
+```
+cd EPIC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
+```
+
+### Video and Flow and Audio
+```
+cd EPIC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 10 --trans_hidden_num 1024 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
+```
+```
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
+```
+
+
 
 ### HAC Dataset
 This dataset can be downloaded at [link](https://polybox.ethz.ch/index.php/s/3F8ZWanMMVjKwJK).
 
-The training code for HAC Dataset will come soon.
+Download the pretrained weights similar to EPIC-Kitchens Dataset and put under the `HAC-rgb-flow-audio/pretrained_models` directory.
+
+### Video and Audio
+```
+cd HAC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+```
+
+### Video and Flow
+```
+cd HAC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+```
+
+### Flow and Audio
+```
+cd HAC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+```
+
+### Video and Flow and Audio
+```
+cd HAC-rgb-flow-audio
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+```
+```
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+```
+
 
 ## Contact
 If you have any questions, please send an email to donghaospurs@gmail.com
