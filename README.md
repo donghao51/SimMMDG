@@ -150,7 +150,7 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio
 python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
 ```
 ```
-python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
+python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --alpha_trans 1.0 --datapath /path/to/EPIC-KITCHENS/
 ```
 
 
