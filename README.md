@@ -158,6 +158,35 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio
 ### HAC Dataset
 This dataset can be downloaded at [link](https://polybox.ethz.ch/index.php/s/3F8ZWanMMVjKwJK).
 
+Unzip all files and the directory structure should be modified to match:
+
+```
+HAC
+├── human
+|   ├── videos
+|   |   ├── ...
+|   ├── flow
+|   |   ├── ...
+|   ├── audio
+|   |   ├── ...
+
+├── animal
+|   ├── videos
+|   |   ├── ...
+|   ├── flow
+|   |   ├── ...
+|   ├── audio
+|   |   ├── ...
+
+├── cartoon
+|   ├── videos
+|   |   ├── ...
+|   ├── flow
+|   |   ├── ...
+|   ├── audio
+|   |   ├── ...
+```
+
 Download the pretrained weights similar to EPIC-Kitchens Dataset and put under the `HAC-rgb-flow-audio/pretrained_models` directory.
 
 ### Video and Audio
@@ -165,13 +194,13 @@ Download the pretrained weights similar to EPIC-Kitchens Dataset and put under t
 cd HAC-rgb-flow-audio
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s 'animal' 'cartoon' -t 'human' --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s 'human' 'cartoon' -t 'animal' --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
 ```
 
 ### Video and Flow
@@ -179,13 +208,13 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s D1 D2 -t
 cd HAC-rgb-flow-audio
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s 'animal' 'cartoon' -t 'human' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s 'human' 'cartoon' -t 'animal' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 
 ### Flow and Audio
@@ -193,13 +222,13 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s D1 D2 -t 
 cd HAC-rgb-flow-audio
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s 'animal' 'cartoon' -t 'human' --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s 'human' 'cartoon' -t 'animal' --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 
 ### Video and Flow and Audio
@@ -207,13 +236,13 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s D1 D2 -t 
 cd HAC-rgb-flow-audio
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D2 D3 -t D1 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s 'animal' 'cartoon' -t 'human' --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D3 -t D2 --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s 'human' 'cartoon' -t 'animal' --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
 ```
 ```
-python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
+python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
 ```
 
 
