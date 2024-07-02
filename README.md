@@ -58,6 +58,10 @@ bash download_script.sh
 Download Audio files [EPIC-KITCHENS-audio.zip](https://polybox.ethz.ch/index.php/s/PE2zIL99OWXQfMu).
 
 Unzip all files and the directory structure should be modified to match:
+<details>
+<summary>Click for details...</summary>
+
+
 
 ```
 ├── MM-SADA_Domain_Adaptation_Splits
@@ -97,7 +101,14 @@ Unzip all files and the directory structure should be modified to match:
 |   |   ├── D3
 ```
 
+</details>
+
+
 ### Video and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd EPIC-rgb-flow-audio
 ```
@@ -111,7 +122,14 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_audio -s D1 D3 -
 python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 25 --datapath /path/to/EPIC-KITCHENS/
 ```
 
+</details>
+
+
 ### Video and Flow
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd EPIC-rgb-flow-audio
 ```
@@ -125,7 +143,14 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow -s D1 D3 -t
 python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/EPIC-KITCHENS/
 ```
 
+</details>
+
+
 ### Flow and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd EPIC-rgb-flow-audio
 ```
@@ -139,7 +164,14 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_flow --use_audio -s D1 D3 -t
 python train_video_flow_audio_EPIC_SimMMDG.py --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/EPIC-KITCHENS/
 ```
 
+</details>
+
+
 ### Video and Flow and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd EPIC-rgb-flow-audio
 ```
@@ -153,12 +185,19 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio
 python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio -s D1 D2 -t D3 --lr 1e-4 --bsz 16 --nepochs 15 --alpha_trans 1.0 --datapath /path/to/EPIC-KITCHENS/
 ```
 
+</details>
+
+
 
 
 ### HAC Dataset
 This dataset can be downloaded at [link](https://polybox.ethz.ch/index.php/s/3F8ZWanMMVjKwJK).
 
 Unzip all files and the directory structure should be modified to match:
+<details>
+<summary>Click for details...</summary>
+
+
 
 ```
 HAC
@@ -187,9 +226,16 @@ HAC
 |   |   ├── ...
 ```
 
+</details>
+
+
 Download the pretrained weights similar to EPIC-Kitchens Dataset and put under the `HAC-rgb-flow-audio/pretrained_models` directory.
 
 ### Video and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd HAC-rgb-flow-audio
 ```
@@ -203,7 +249,14 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s 'human' 
 python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 10 --datapath /path/to/HAC/
 ```
 
+</details>
+
+
 ### Video and Flow
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd HAC-rgb-flow-audio
 ```
@@ -217,7 +270,14 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s 'human' '
 python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 
+</details>
+
+
 ### Flow and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd HAC-rgb-flow-audio
 ```
@@ -231,7 +291,14 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s 'human' '
 python train_video_flow_audio_HAC_SimMMDG.py --use_flow --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 20 --datapath /path/to/HAC/
 ```
 
+</details>
+
+
 ### Video and Flow and Audio
+<details>
+<summary>Click for details...</summary>
+
+
 ```
 cd HAC-rgb-flow-audio
 ```
@@ -244,6 +311,9 @@ python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio 
 ```
 python train_video_flow_audio_HAC_SimMMDG.py --use_video --use_flow --use_audio -s 'human' 'animal' -t 'cartoon' --lr 1e-4 --bsz 16 --nepochs 15 --datapath /path/to/HAC/
 ```
+
+</details>
+
 
 
 ## Contact
@@ -261,6 +331,12 @@ If you find our work useful in your research please consider citing our paper:
     year={2023}
 }
 ```
+
+## Related Projects
+
+[MOOSA](https://github.com/donghao51/MOOSA): Towards Multimodal Open-Set Domain Generalization and Adaptation through Self-supervision
+
+[MultiOOD](https://github.com/donghao51/MultiOOD): Scaling Out-of-Distribution Detection for Multiple Modalities
 ## Acknowledgement
 
 Many thanks to the excellent open-source projects [DomainAdaptation](https://github.com/xiaobai1217/DomainAdaptation).
