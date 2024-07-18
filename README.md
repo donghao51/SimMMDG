@@ -55,7 +55,7 @@ mmaction2 0.13.0
 ```
 bash download_script.sh 
 ```
-Download Audio files [EPIC-KITCHENS-audio.zip](https://polybox.ethz.ch/index.php/s/PE2zIL99OWXQfMu).
+Download Audio files [EPIC-KITCHENS-audio.zip](https://huggingface.co/datasets/hdong51/Human-Animal-Cartoon/blob/main/EPIC-KITCHENS-audio.zip).
 
 Unzip all files and the directory structure should be modified to match:
 <details>
@@ -191,7 +191,7 @@ python train_video_flow_audio_EPIC_SimMMDG.py --use_video --use_flow --use_audio
 
 
 ### HAC Dataset
-This dataset can be downloaded at [link](https://polybox.ethz.ch/index.php/s/3F8ZWanMMVjKwJK).
+This dataset can be downloaded at [link](https://huggingface.co/datasets/hdong51/Human-Animal-Cartoon/tree/main).
 
 Unzip all files and the directory structure should be modified to match:
 <details>
