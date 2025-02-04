@@ -33,6 +33,8 @@
 
 Overview of SimMMDG. We split the features of each modality into modality-specific and modality-shared parts. For the modality-shared part, we use supervised contrastive learning to map the features with the same label to be as close as possible. For modality-specific features, we use a distance loss to encourage them to be far from modality-shared features, promoting diversity within each modality. Additionally, we introduce a cross-modal translation module that regularizes features and enhances generalization across missing modalities.
 
+**Update**: We have a new survey paper on [Multimodal Adaptation and Generalization](https://arxiv.org/abs/2501.18592)
+
 ## Code
 The code was tested using `Python 3.10.4`, `torch 1.11.0+cu113` and `NVIDIA GeForce RTX 3090`.
 
@@ -336,7 +338,12 @@ If you find our work useful in your research please consider citing our paper:
 
 [MOOSA](https://github.com/donghao51/MOOSA): Towards Multimodal Open-Set Domain Generalization and Adaptation through Self-supervision
 
+[AEO](https://github.com/donghao51/AEO): Towards Robust Multimodal Open-set Test-time Adaptation via Adaptive Entropy-aware Optimization
+
+[Survey](https://github.com/donghao51/Awesome-Multimodal-Adaptation): Advances in Multimodal Adaptation and Generalization: From Traditional Approaches to Foundation Models
+
 [MultiOOD](https://github.com/donghao51/MultiOOD): Scaling Out-of-Distribution Detection for Multiple Modalities
+
 ## Acknowledgement
 
-Many thanks to the excellent open-source projects [DomainAdaptation](https://github.com/xiaobai1217/DomainAdaptation).
+Many thanks to the open-source project [DomainAdaptation](https://github.com/xiaobai1217/DomainAdaptation).
