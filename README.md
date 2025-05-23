@@ -344,6 +344,8 @@ If you find our work useful in your research please consider citing our paper:
 
 [MultiOOD](https://github.com/donghao51/MultiOOD): Scaling Out-of-Distribution Detection for Multiple Modalities
 
+[Feature Mixing](https://github.com/mona4399/FeatureMixing): Extremely Simple Multimodal Outlier Synthesis for Out-of-Distribution Detection and Segmentation
+
 ## Acknowledgement
 
 Many thanks to the open-source project [DomainAdaptation](https://github.com/xiaobai1217/DomainAdaptation).
